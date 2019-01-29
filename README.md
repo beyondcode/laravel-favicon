@@ -9,6 +9,12 @@ Create dynamic favicons based on your environment settings.
 
 ![](https://beyondco.de/github/favicons/screenshot.png)
 
+## Laravel Package Development
+
+[![https://phppackagedevelopment.com](https://beyondco.de/courses/phppd.jpg)](https://phppackagedevelopment.com)
+
+If you want to learn how to create reusable PHP packages yourself, take a look at my upcoming [PHP Package Development](https://phppackagedevelopment.com) video course.
+
 ## Installation
 
 You can install the package via composer:
