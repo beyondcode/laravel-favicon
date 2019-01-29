@@ -2,13 +2,11 @@
 
 namespace BeyondCode\LaravelFavicon\Tests;
 
-
 use BeyondCode\LaravelFavicon\Favicon;
 use BeyondCode\LaravelFavicon\FaviconServiceProvider;
 
 class EnvironmentGeneratorTest extends \Orchestra\Testbench\TestCase
 {
-
     protected function getPackageProviders($app)
     {
         return [FaviconServiceProvider::class];

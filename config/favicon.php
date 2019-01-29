@@ -56,5 +56,4 @@ return [
      */
     'generator' => \BeyondCode\LaravelFavicon\Generators\EnvironmentGenerator::class,
 
-
 ];

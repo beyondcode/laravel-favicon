@@ -2,7 +2,6 @@
 
 namespace BeyondCode\LaravelFavicon\Tests;
 
-
 use BeyondCode\LaravelFavicon\Favicon;
 use BeyondCode\LaravelFavicon\FaviconServiceProvider;
 

@@ -6,7 +6,7 @@ if (! function_exists('favicon')) {
     function favicon($image)
     {
         if (app(FaviconGenerator::class)->shouldGenerateFavicon(app()->environment())) {
-            return "/".config('favicon.url_prefix')."/$image";
+            return '/'.config('favicon.url_prefix')."/$image";
         }
 
         return $image;

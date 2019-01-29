@@ -19,7 +19,7 @@ class FaviconServiceProvider extends ServiceProvider
                 __DIR__.'/../config/favicon.php' => config_path('favicon.php'),
             ], 'config');
         }
-        
+
         $this->registerRoutes();
     }
 
