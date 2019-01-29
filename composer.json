@@ -17,7 +17,6 @@
     ],
     "require": {
         "php": "^7.1",
-        "guzzlehttp/guzzle": "^6.3",
         "illuminate/http": "5.6.*|5.7.*",
         "illuminate/support": "5.6.*|5.7.*",
         "intervention/image": "^2.4"
