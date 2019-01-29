@@ -14,16 +14,16 @@ class Favicon
 
     public function getFaviconText(string $environment)
     {
-        return array_get($this->config,'enabled_environments.'.$environment.'.text');
+        return array_get($this->config, 'enabled_environments.'.$environment.'.text');
     }
 
     public function getFaviconColor(string $environment)
     {
-        return array_get($this->config,'enabled_environments.'.$environment.'.color');
+        return array_get($this->config, 'enabled_environments.'.$environment.'.color');
     }
 
     public function getFaviconBackgroundColor(string $environment)
     {
-        return array_get($this->config,'enabled_environments.'.$environment.'.background_color');
+        return array_get($this->config, 'enabled_environments.'.$environment.'.background_color');
     }
 }

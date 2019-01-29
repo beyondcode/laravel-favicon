@@ -4,8 +4,8 @@ namespace BeyondCode\LaravelFavicon\Generators;
 
 use Illuminate\Http\Response;
 use Intervention\Image\Image;
-use Intervention\Image\ImageManager;
 use Intervention\Image\AbstractFont;
+use Intervention\Image\ImageManager;
 use BeyondCode\LaravelFavicon\Favicon;
 use Intervention\Image\Gd\Font as GdFont;
 use Intervention\Image\Imagick\Font as ImagickFont;
@@ -26,7 +26,7 @@ class EnvironmentGenerator implements FaviconGenerator
         $this->favicon = $favicon;
 
         $this->manager = new ImageManager([
-            'driver' => config('favicon.image_driver')
+            'driver' => config('favicon.image_driver'),
         ]);
 
         $this->environment = config('app.env');
@@ -41,7 +41,7 @@ class EnvironmentGenerator implements FaviconGenerator
 
         $font = $this->getFont($this->favicon->getFaviconText($this->environment));
 
-        $font->file(config('favicon.font') ?? __DIR__ . '/../../resources/fonts/OpenSans-Regular.ttf');
+        $font->file(config('favicon.font') ?? __DIR__.'/../../resources/fonts/OpenSans-Regular.ttf');
 
         $font->valign('top');
 
@@ -73,10 +73,10 @@ class EnvironmentGenerator implements FaviconGenerator
     {
         $size = $font->getBoxSize();
 
-        while ($size["width"] + $paddingX > $icon->width()  && $font->getSize() > 0) {
+        while ($size['width'] + $paddingX > $icon->width() && $font->getSize() > 0) {
             $fontSize = $font->getSize();
 
-            $font->size($fontSize-1);
+            $font->size($fontSize - 1);
 
             $size = $font->getBoxSize();
         }
