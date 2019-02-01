@@ -2,6 +2,8 @@
 
 namespace BeyondCode\LaravelFavicon;
 
+use Illuminate\Support\Arr;
+
 class Favicon
 {
     /** @var array */
@@ -14,16 +16,16 @@ class Favicon
 
     public function getFaviconText(string $environment)
     {
-        return array_get($this->config, 'enabled_environments.'.$environment.'.text');
+        return Arr::get($this->config, 'enabled_environments.'.$environment.'.text');
     }
 
     public function getFaviconColor(string $environment)
     {
-        return array_get($this->config, 'enabled_environments.'.$environment.'.color');
+        return Arr::get($this->config, 'enabled_environments.'.$environment.'.color');
     }
 
     public function getFaviconBackgroundColor(string $environment)
     {
-        return array_get($this->config, 'enabled_environments.'.$environment.'.background_color');
+        return Arr::get($this->config, 'enabled_environments.'.$environment.'.background_color');
     }
 }
