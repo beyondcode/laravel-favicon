@@ -16,9 +16,9 @@
         }
     ],
     "require": {
-        "php": "^7.1",
-        "illuminate/http": "5.6.*|5.7.*",
-        "illuminate/support": "5.6.*|5.7.*",
+        "php": "^7.2",
+        "illuminate/http": "5.6.*|5.7.*|^6.0",
+        "illuminate/support": "5.6.*|5.7.*|^6.0",
         "intervention/image": "^2.4"
     },
     "require-dev": {
