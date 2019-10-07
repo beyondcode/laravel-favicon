@@ -10,7 +10,7 @@ class FaviconTest extends \Orchestra\Testbench\TestCase
     /** @var Favicon */
     protected $favicon;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
