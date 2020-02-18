@@ -2,12 +2,12 @@
 
 namespace BeyondCode\LaravelFavicon\Generators;
 
-use Illuminate\Http\Response;
-use Intervention\Image\Image;
-use Intervention\Image\AbstractFont;
-use Intervention\Image\ImageManager;
 use BeyondCode\LaravelFavicon\Favicon;
+use Illuminate\Http\Response;
+use Intervention\Image\AbstractFont;
 use Intervention\Image\Gd\Font as GdFont;
+use Intervention\Image\Image;
+use Intervention\Image\ImageManager;
 use Intervention\Image\Imagick\Font as ImagickFont;
 
 class EnvironmentGenerator implements FaviconGenerator
