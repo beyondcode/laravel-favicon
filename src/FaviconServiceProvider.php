@@ -2,10 +2,10 @@
 
 namespace BeyondCode\LaravelFavicon;
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\ServiceProvider;
 use BeyondCode\LaravelFavicon\Generators\FaviconGenerator;
 use BeyondCode\LaravelFavicon\Http\Controllers\FaviconController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 
 class FaviconServiceProvider extends ServiceProvider
 {

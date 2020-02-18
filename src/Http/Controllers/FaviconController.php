@@ -2,8 +2,8 @@
 
 namespace BeyondCode\LaravelFavicon\Http\Controllers;
 
-use Illuminate\Http\Request;
 use BeyondCode\LaravelFavicon\Generators\FaviconGenerator;
+use Illuminate\Http\Request;
 
 class FaviconController
 {
