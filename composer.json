@@ -40,7 +40,7 @@
     },
     "scripts": {
         "test": "vendor/bin/pest",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+        "test-coverage": "vendor/bin/pest --coverage"
     },
     "config": {
         "sort-packages": true
