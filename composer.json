@@ -52,5 +52,7 @@
                 "BeyondCode\\LaravelFavicon\\FaviconServiceProvider"
             ]
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
