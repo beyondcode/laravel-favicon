@@ -9,7 +9,7 @@ test('the helper returns the icon file for invalid environments', function () {
 
     $icon = favicon('some_icon');
 
-    $this->assertSame('some_icon', $icon);
+    expect($icon)->toBe('some_icon');
 });
 
 test('the helper returns the icon route for valid environments', function () {
@@ -17,7 +17,7 @@ test('the helper returns the icon route for valid environments', function () {
 
     $icon = favicon('some_icon');
 
-    $this->assertSame('/laravel-favicon/some_icon', $icon);
+    expect($icon)->toBe('/laravel-favicon/some_icon');
 });
 
 // Helpers
