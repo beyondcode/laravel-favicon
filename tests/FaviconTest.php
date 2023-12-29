@@ -18,18 +18,18 @@ beforeEach(function () {
 
 
 it('returns environment specific color', function () {
-    expect($this->favicon->getFaviconColor('unknown'))->toBeNull();
-    expect($this->favicon->getFaviconColor('local'))->toBe('#000000');
+    expect($this->favicon->getFaviconColor('unknown'))->toBeNull()
+        ->and($this->favicon->getFaviconColor('local'))->toBe('#000000');
 });
 
 it('returns environment specific text', function () {
-    expect($this->favicon->getFaviconText('unknown'))->toBeNull();
-    expect($this->favicon->getFaviconText('local'))->toBe('DEV');
+    expect($this->favicon->getFaviconText('unknown'))->toBeNull()
+        ->and($this->favicon->getFaviconText('local'))->toBe('DEV');
 });
 
 it('returns environment specific background color', function () {
-    expect($this->favicon->getFaviconBackgroundColor('unknown'))->toBeNull();
-    expect($this->favicon->getFaviconBackgroundColor('local'))->toBe('#ffffff');
+    expect($this->favicon->getFaviconBackgroundColor('unknown'))->toBeNull()
+        ->and($this->favicon->getFaviconBackgroundColor('local'))->toBe('#ffffff');
 });
 
 // Helpers
