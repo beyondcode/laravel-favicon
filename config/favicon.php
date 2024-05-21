@@ -35,7 +35,7 @@ return [
     /*
     * Intervention Image supports "GD Library" and "Imagick" to process images
     * internally. You may choose one of them according to your PHP
-    * configuration. By default PHP's "GD Library" implementation is used.
+    * configuration. By default, PHP's "GD Library" implementation is used.
     *
     * If you want to convert ICO files, you need to use imagick.
     *
