@@ -25,6 +25,20 @@ composer require beyondcode/laravel-favicon
 
 The service provider for this package will be automatically registered for you.
 
+### Compatibility
+
+|       | 1.0 | 1.1 | 1.2 | 1.3 | 1.4 | 1.5 | 1.6 |
+|-------|-----|-----|-----|-----|-----|-----|-----|
+| 5.6.x | ✅   | ✅   | ✅   | ✅   | ✅   | ✅   | ✅   |
+| 5.7.x | ✅   | ✅   | ✅   | ✅   | ✅   | ✅   | ✅   |
+| 5.8.x | ❌   | ✅   | ✅   | ✅   | ✅   | ✅   | ✅   |
+| 6.x   | ❌   | ✅   | ✅   | ✅   | ✅   | ✅   | ✅   |
+| 7.x   | ❌   | ❌   | ✅   | ✅   | ✅   | ✅   | ✅   |
+| 8.x   | ❌   | ❌   | ❌   | ✅   | ✅   | ✅   | ✅   |
+| 9.x   | ❌   | ❌   | ❌   | ❌   | ❌   | ✅   | ✅   |
+| 10.x  | ❌   | ❌   | ❌   | ❌   | ❌   | ✅   | ✅   |
+| 11.x  | ❌   | ❌   | ❌   | ❌   | ❌   | ❌   | ✅   |
+
 ## Usage
 
 To make use of this package, make use of the `favicon` helper function that this package provides.
@@ -37,7 +51,7 @@ You can simply wrap the function around your favicon icon names, like this:
 <link rel="shortcut icon" href="{{ favicon('favicon.ico') }}" />
 ```
 
-## Customization
+### Customization
 
 You can completely customize which environments you want to have enabled for the favicon generation, as well as the font and colors that will be used.
 
@@ -87,7 +101,7 @@ return [
     /*
     * Intervention Image supports "GD Library" and "Imagick" to process images
     * internally. You may choose one of them according to your PHP
-    * configuration. By default PHP's "GD Library" implementation is used.
+    * configuration. By default, PHP's "GD Library" implementation is used.
     *
     * If you want to convert ICO files, you need to use imagick.
     *
@@ -136,15 +150,15 @@ The `shouldGenerateFavicon` method can be used to determine if a custom favicon 
 
 ## FAQ
 
-- My ICO files are not working, why?
+### My ICO files are not working, why?
 
 In order to modify ICO files, you need the Imagick PHP library installed and enabled in your `config/favicon.php` file.
 
-- Is there a performance impact when I'm using this package?
+### Is there a performance impact when I'm using this package?
 
 No - the default generator only modifies your favicon when the specified environment is enabled. This means, that production environments only see the static assets that you already have.
 
-### Changelog
+## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
@@ -152,7 +166,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-### Security
+## Security
 
 If you discover any security related issues, please email marcel@beyondco.de instead of using the issue tracker.
 
