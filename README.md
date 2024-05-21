@@ -27,16 +27,17 @@ The service provider for this package will be automatically registered for you.
 
 ### Compatibility
 
-|       | 1.0 | 1.1 | 1.2 | 1.3 | 1.4 | 1.5 | 2.0 |
+|       | 1.0 | 1.1 | 1.2 | 1.3 | 1.4 | 1.5 | 1.6 |
 |-------|-----|-----|-----|-----|-----|-----|-----|
-| 5.6.x | ✅   | ✅   | ✅   | ✅   | ✅   | ✅   | ❌   |
-| 5.7.x | ✅   | ✅   | ✅   | ✅   | ✅   | ✅   | ❌   |
-| 5.8.x | ❌   | ✅   | ✅   | ✅   | ✅   | ✅   | ❌   |
-| 6.x   | ❌   | ✅   | ✅   | ✅   | ✅   | ✅   | ❌   |
-| 7.x   | ❌   | ❌   | ✅   | ✅   | ✅   | ✅   | ❌   |
-| 8.x   | ❌   | ❌   | ❌   | ✅   | ✅   | ✅   | ❌   |
+| 5.6.x | ✅   | ✅   | ✅   | ✅   | ✅   | ✅   | ✅   |
+| 5.7.x | ✅   | ✅   | ✅   | ✅   | ✅   | ✅   | ✅   |
+| 5.8.x | ❌   | ✅   | ✅   | ✅   | ✅   | ✅   | ✅   |
+| 6.x   | ❌   | ✅   | ✅   | ✅   | ✅   | ✅   | ✅   |
+| 7.x   | ❌   | ❌   | ✅   | ✅   | ✅   | ✅   | ✅   |
+| 8.x   | ❌   | ❌   | ❌   | ✅   | ✅   | ✅   | ✅   |
 | 9.x   | ❌   | ❌   | ❌   | ❌   | ❌   | ✅   | ✅   |
 | 10.x  | ❌   | ❌   | ❌   | ❌   | ❌   | ✅   | ✅   |
+| 11.x  | ❌   | ❌   | ❌   | ❌   | ❌   | ❌   | ✅   |
 
 ## Usage
 
@@ -100,7 +101,7 @@ return [
     /*
     * Intervention Image supports "GD Library" and "Imagick" to process images
     * internally. You may choose one of them according to your PHP
-    * configuration. By default PHP's "GD Library" implementation is used.
+    * configuration. By default, PHP's "GD Library" implementation is used.
     *
     * If you want to convert ICO files, you need to use imagick.
     *
