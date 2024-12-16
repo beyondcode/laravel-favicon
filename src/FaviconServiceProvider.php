@@ -12,7 +12,7 @@ class FaviconServiceProvider extends ServiceProvider
     /**
      * Bootstrap the application services.
      */
-    public function boot()
+    public function boot(): void
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -26,7 +26,7 @@ class FaviconServiceProvider extends ServiceProvider
     /**
      * Register the application services.
      */
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/favicon.php', 'favicon');
 
@@ -39,7 +39,7 @@ class FaviconServiceProvider extends ServiceProvider
         });
     }
 
-    protected function registerRoutes()
+    protected function registerRoutes(): void
     {
         Route::get(config('favicon.url_prefix').'/{icon}', FaviconController::class)
             ->where('icon', '.*');

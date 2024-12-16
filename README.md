@@ -57,7 +57,7 @@ You can completely customize which environments you want to have enabled for the
 
 To modify the default values, publish the package configuration file using:
 
-```
+```bash
 php artisan vendor:publish --provider='BeyondCode\LaravelFavicon\FaviconServiceProvider' --tag='config'
 ```
 

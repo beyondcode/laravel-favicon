@@ -12,14 +12,11 @@ use Intervention\Image\Imagick\Font as ImagickFont;
 
 class EnvironmentGenerator implements FaviconGenerator
 {
-    /** @var Favicon */
-    protected $favicon;
+    protected Favicon $favicon;
 
-    /** @var ImageManager */
-    protected $manager;
+    protected ImageManager $manager;
 
-    /** @var string */
-    protected $environment;
+    protected string $environment;
 
     public function __construct(Favicon $favicon)
     {
@@ -82,7 +79,7 @@ class EnvironmentGenerator implements FaviconGenerator
         }
     }
 
-    protected function createEnvironmentTextImage(AbstractFont $font)
+    protected function createEnvironmentTextImage(AbstractFont $font): Image
     {
         $size = $font->getBoxSize();
 
