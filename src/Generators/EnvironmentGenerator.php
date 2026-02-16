@@ -156,37 +156,40 @@ class EnvironmentGenerator implements FaviconGenerator
         $width = $this->getSvgDimension($svgElement, 'width', 32);
         $height = $this->getSvgDimension($svgElement, 'height', 32);
 
-        $fontSize = min($width, $height) * 0.25;
-        $paddingX = config('favicon.padding.x', 2);
+        $fontSize = min($width, $height) * 0.4;
+        $padding = 4;
         $paddingY = config('favicon.padding.y', 2);
 
-        $textX = $width - $paddingX;
+        $centerX = $width / 2;
         $textY = $height - $paddingY;
 
+        // Estimate text dimensions for background rect
+        $textWidth = strlen($text) * $fontSize * 0.65;
+        $textHeight = $fontSize;
+
+        if ($backgroundColor) {
+            $rectElement = $dom->createElement('rect');
+            $paddingTop = $padding * 3;
+            $paddingBottom = $padding;
+            $rectElement->setAttribute('x', $centerX - $textWidth / 2 - $padding);
+            $rectElement->setAttribute('y', $textY - $textHeight - $paddingTop);
+            $rectElement->setAttribute('width', $textWidth + $padding * 2);
+            $rectElement->setAttribute('height', $textHeight + $paddingTop + $paddingBottom);
+            $rectElement->setAttribute('fill', $backgroundColor);
+            $rectElement->setAttribute('rx', $padding);
+
+            $svgElement->appendChild($rectElement);
+        }
+
         $textElement = $dom->createElement('text', htmlspecialchars($text));
-        $textElement->setAttribute('x', $textX);
+        $textElement->setAttribute('x', $centerX);
         $textElement->setAttribute('y', $textY);
         $textElement->setAttribute('font-family', 'Arial, sans-serif');
         $textElement->setAttribute('font-size', $fontSize);
         $textElement->setAttribute('font-weight', 'bold');
         $textElement->setAttribute('fill', $color ?: '#000000');
-        $textElement->setAttribute('text-anchor', 'end');
-        $textElement->setAttribute('dominant-baseline', 'text-bottom');
-
-        if ($backgroundColor) {
-            $textWidth = strlen($text) * $fontSize * 0.6;
-            $textHeight = $fontSize;
-
-            $rectElement = $dom->createElement('rect');
-            $rectElement->setAttribute('x', $textX - $textWidth - 2);
-            $rectElement->setAttribute('y', $textY - $textHeight);
-            $rectElement->setAttribute('width', $textWidth + 4);
-            $rectElement->setAttribute('height', $textHeight + 2);
-            $rectElement->setAttribute('fill', $backgroundColor);
-            $rectElement->setAttribute('rx', 2);
-
-            $svgElement->appendChild($rectElement);
-        }
+        $textElement->setAttribute('text-anchor', 'middle');
+        $textElement->setAttribute('dominant-baseline', 'text-after-edge');
 
         $svgElement->appendChild($textElement);
 
