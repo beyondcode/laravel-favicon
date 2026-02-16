@@ -121,13 +121,14 @@ class EnvironmentGenerator implements FaviconGenerator
             if ($content === false) {
                 throw new \Exception("Could not fetch SVG content from URL: {$icon}");
             }
+
             return $content;
         }
 
         $fullPath = public_path($icon);
-        if (!File::exists($fullPath)) {
+        if (! File::exists($fullPath)) {
             $fullPath = $icon;
-            if (!File::exists($fullPath)) {
+            if (! File::exists($fullPath)) {
                 throw new \Exception("SVG file not found: {$icon}");
             }
         }
@@ -149,8 +150,8 @@ class EnvironmentGenerator implements FaviconGenerator
         $dom->loadXML($svgContent);
         $svgElement = $dom->getElementsByTagName('svg')->item(0);
 
-        if (!$svgElement) {
-            throw new \Exception("Invalid SVG content");
+        if (! $svgElement) {
+            throw new \Exception('Invalid SVG content');
         }
 
         $width = $this->getSvgDimension($svgElement, 'width', 32);
@@ -200,7 +201,7 @@ class EnvironmentGenerator implements FaviconGenerator
     {
         $value = $svgElement->getAttribute($attribute);
 
-        if (!empty($value)) {
+        if (! empty($value)) {
             $numericValue = preg_replace('/[^0-9.]/', '', $value);
             if ($numericValue) {
                 return (int) $numericValue;
@@ -209,7 +210,7 @@ class EnvironmentGenerator implements FaviconGenerator
 
         // Fall back to viewBox dimensions
         $viewBox = $svgElement->getAttribute('viewBox');
-        if (!empty($viewBox)) {
+        if (! empty($viewBox)) {
             $parts = preg_split('/[\s,]+/', trim($viewBox));
             if (count($parts) === 4) {
                 $index = $attribute === 'width' ? 2 : 3;
