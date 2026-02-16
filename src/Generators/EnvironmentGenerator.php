@@ -5,30 +5,24 @@ namespace BeyondCode\LaravelFavicon\Generators;
 use BeyondCode\LaravelFavicon\Favicon;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
-use Intervention\Image\AbstractFont;
-use Intervention\Image\Gd\Font as GdFont;
-use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
-use Intervention\Image\Imagick\Font as ImagickFont;
+use Intervention\Image\Typography\FontFactory;
 
 class EnvironmentGenerator implements FaviconGenerator
 {
-    /** @var Favicon */
-    protected $favicon;
+    protected Favicon $favicon;
 
-    /** @var ImageManager */
-    protected $manager;
+    protected ImageManager $manager;
 
-    /** @var string */
-    protected $environment;
+    protected string $environment;
 
     public function __construct(Favicon $favicon)
     {
         $this->favicon = $favicon;
 
-        $this->manager = new ImageManager([
-            'driver' => config('favicon.image_driver'),
-        ]);
+        $this->manager = config('favicon.image_driver', 'gd') === 'imagick'
+            ? ImageManager::imagick()
+            : ImageManager::gd();
 
         $this->environment = config('app.env');
     }
@@ -39,63 +33,85 @@ class EnvironmentGenerator implements FaviconGenerator
             return $this->generateSvg($icon);
         }
 
+        return $this->generateRaster($icon);
+    }
+
+    protected function generateRaster(string $icon): Response
+    {
         $paddingX = config('favicon.padding.x');
         $paddingY = config('favicon.padding.y');
 
-        $img = $this->manager->make($icon);
+        $img = $this->manager->read($icon);
 
-        $font = $this->getFont($this->favicon->getFaviconText($this->environment));
+        $text = $this->favicon->getFaviconText($this->environment);
+        $color = $this->favicon->getFaviconColor($this->environment);
+        $bgColor = $this->favicon->getFaviconBackgroundColor($this->environment);
+        $fontPath = config('favicon.font') ?? __DIR__.'/../../resources/fonts/OpenSans-Regular.ttf';
 
-        $font->file(config('favicon.font') ?? __DIR__.'/../../resources/fonts/OpenSans-Regular.ttf');
+        $imgWidth = $img->width();
+        $imgHeight = $img->height();
 
-        $font->valign('top');
+        // Calculate dynamic font size
+        $fontSize = 12;
+        $textSize = $this->measureText($text, $fontSize, $fontPath);
 
-        $font->color($this->favicon->getFaviconColor($this->environment));
-
-        $this->calculateDynamicFontSize($font, $img, $paddingX);
-
-        $environmentTextImage = $this->createEnvironmentTextImage($font);
-
-        $output = $this->manager->canvas($img->width(), $img->height());
-
-        $output->insert($img);
-
-        $output->insert($environmentTextImage, 'bottom-right', $paddingX, $paddingY);
-
-        return $output->response('png');
-    }
-
-    protected function getFont(string $text): AbstractFont
-    {
-        if (config('favicon.image_driver') === 'imagick') {
-            return new ImagickFont($text);
+        while ($textSize['width'] + $paddingX > $imgWidth && $fontSize > 0) {
+            $fontSize--;
+            $textSize = $this->measureText($text, $fontSize, $fontPath);
         }
 
-        return new GdFont($text);
-    }
-
-    protected function calculateDynamicFontSize(AbstractFont $font, Image $icon, $paddingX)
-    {
-        $size = $font->getBoxSize();
-
-        while ($size['width'] + $paddingX > $icon->width() && $font->getSize() > 0) {
-            $fontSize = $font->getSize();
-
-            $font->size($fontSize - 1);
-
-            $size = $font->getBoxSize();
+        // Create environment text overlay with background
+        $textImg = $this->manager->create($textSize['width'], $textSize['height']);
+        if ($bgColor) {
+            $textImg->fill($bgColor);
         }
+        $textImg->text($text, 0, 0, function (FontFactory $font) use ($fontPath, $fontSize, $color) {
+            $font->filename($fontPath);
+            $font->size($fontSize);
+            $font->color($color);
+            $font->valign('top');
+        });
+
+        // Compose output
+        $output = $this->manager->create($imgWidth, $imgHeight);
+        $output->place($img);
+        $output->place($textImg, 'bottom-right', $paddingX, $paddingY);
+
+        $encoded = $output->toPng();
+
+        return new Response((string) $encoded, 200, [
+            'Content-Type' => 'image/png',
+        ]);
     }
 
-    protected function createEnvironmentTextImage(AbstractFont $font)
+    protected function measureText(string $text, float $fontSize, string $fontPath): array
     {
-        $size = $font->getBoxSize();
+        if (function_exists('imagettfbbox')) {
+            $box = imagettfbbox($fontSize, 0, $fontPath, $text);
 
-        $environmentText = $this->manager->canvas($size['width'], $size['height'], $this->favicon->getFaviconBackgroundColor($this->environment));
+            return [
+                'width' => max(1, max($box[2], $box[4]) - min($box[0], $box[6])),
+                'height' => max(1, max($box[1], $box[3]) - min($box[5], $box[7])),
+            ];
+        }
 
-        $font->applyToImage($environmentText);
+        if (class_exists(\Imagick::class)) {
+            $draw = new \ImagickDraw();
+            $draw->setFont($fontPath);
+            $draw->setFontSize($fontSize);
+            $imagick = new \Imagick();
+            $metrics = $imagick->queryFontMetrics($draw, $text);
 
-        return $environmentText;
+            return [
+                'width' => max(1, (int) ceil($metrics['textWidth'])),
+                'height' => max(1, (int) ceil($metrics['textHeight'])),
+            ];
+        }
+
+        return [
+            'width' => max(1, (int) ceil(strlen($text) * $fontSize * 0.6)),
+            'height' => max(1, (int) ceil($fontSize * 1.2)),
+        ];
     }
 
     protected function isSvgFile(string $icon): bool
