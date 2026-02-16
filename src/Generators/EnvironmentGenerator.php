@@ -197,13 +197,25 @@ class EnvironmentGenerator implements FaviconGenerator
     {
         $value = $svgElement->getAttribute($attribute);
 
-        if (empty($value)) {
-            return $default;
+        if (!empty($value)) {
+            $numericValue = preg_replace('/[^0-9.]/', '', $value);
+            if ($numericValue) {
+                return (int) $numericValue;
+            }
         }
 
-        $numericValue = preg_replace('/[^0-9.]/', '', $value);
+        // Fall back to viewBox dimensions
+        $viewBox = $svgElement->getAttribute('viewBox');
+        if (!empty($viewBox)) {
+            $parts = preg_split('/[\s,]+/', trim($viewBox));
+            if (count($parts) === 4) {
+                $index = $attribute === 'width' ? 2 : 3;
 
-        return $numericValue ? (int) $numericValue : $default;
+                return (int) $parts[$index];
+            }
+        }
+
+        return $default;
     }
 
     public function shouldGenerateFavicon(): bool
