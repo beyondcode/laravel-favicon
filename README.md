@@ -50,6 +50,9 @@ You can simply wrap the function around your favicon icon names, like this:
 <link rel="icon" type="image/png" sizes="32x32" href="{{ favicon(asset('favicon-32x32.png')) }}">
 
 <link rel="shortcut icon" href="{{ favicon('favicon.ico') }}" />
+
+<!-- SVG favicons are also supported! -->
+<link rel="icon" type="image/svg+xml" href="{{ favicon(asset('favicon.svg')) }}">
 ```
 
 ### Customization
