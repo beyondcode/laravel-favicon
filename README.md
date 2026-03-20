@@ -39,6 +39,7 @@ The service provider for this package will be automatically registered for you.
 | 10.x  | ❌   | ❌   | ❌   | ❌   | ❌   | ✅   | ✅   | ✅   | ✅   |
 | 11.x  | ❌   | ❌   | ❌   | ❌   | ❌   | ❌   | ✅   | ✅   | ✅   |
 | 12.x  | ❌   | ❌   | ❌   | ❌   | ❌   | ❌   | ❌   | ✅   | ✅   |
+| 13.x  | ❌   | ❌   | ❌   | ❌   | ❌   | ❌   | ❌   | ❌   | ✅   |
 
 ## Usage
 
