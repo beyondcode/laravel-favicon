@@ -1,8 +1,6 @@
 # Laravel Favicon 
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/beyondcode/laravel-favicon.svg?style=flat-square)](https://packagist.org/packages/beyondcode/laravel-favicon)
-[![Build Status](https://img.shields.io/travis/beyondcode/laravel-favicon/master.svg?style=flat-square)](https://travis-ci.org/beyondcode/laravel-favicon)
-[![Quality Score](https://img.shields.io/scrutinizer/g/beyondcode/laravel-favicon.svg?style=flat-square)](https://scrutinizer-ci.com/g/beyondcode/laravel-favicon)
 [![Total Downloads](https://img.shields.io/packagist/dt/beyondcode/laravel-favicon.svg?style=flat-square)](https://packagist.org/packages/beyondcode/laravel-favicon)
 
 Create dynamic favicons based on your environment settings.
@@ -39,6 +37,7 @@ The service provider for this package will be automatically registered for you.
 | 10.x  | ❌   | ❌   | ❌   | ❌   | ❌   | ✅   | ✅   | ✅   | ✅   |
 | 11.x  | ❌   | ❌   | ❌   | ❌   | ❌   | ❌   | ✅   | ✅   | ✅   |
 | 12.x  | ❌   | ❌   | ❌   | ❌   | ❌   | ❌   | ❌   | ✅   | ✅   |
+| 13.x  | ❌   | ❌   | ❌   | ❌   | ❌   | ❌   | ❌   | ❌   | ✅   |
 
 ## Usage
 
