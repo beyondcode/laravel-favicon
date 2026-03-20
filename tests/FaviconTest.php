@@ -4,6 +4,7 @@ namespace BeyondCode\LaravelFavicon\Tests;
 
 use BeyondCode\LaravelFavicon\Favicon;
 use BeyondCode\LaravelFavicon\FaviconServiceProvider;
+use PHPUnit\Framework\Attributes\Test;
 
 class FaviconTest extends \Orchestra\Testbench\TestCase
 {
@@ -30,21 +31,21 @@ class FaviconTest extends \Orchestra\Testbench\TestCase
         return [FaviconServiceProvider::class];
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_environment_specific_color()
     {
         $this->assertNull($this->favicon->getFaviconColor('unknown'));
         $this->assertSame('#000000', $this->favicon->getFaviconColor('local'));
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_environment_specific_text()
     {
         $this->assertNull($this->favicon->getFaviconText('unknown'));
         $this->assertSame('DEV', $this->favicon->getFaviconText('local'));
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_environment_specific_background_color()
     {
         $this->assertNull($this->favicon->getFaviconBackgroundColor('unknown'));
